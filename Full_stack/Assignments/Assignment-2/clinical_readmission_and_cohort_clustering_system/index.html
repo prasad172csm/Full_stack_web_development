@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retail Customer Profiler</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div>
+      <p class="eyebrow">Retail Analytics • Basic Project</p>
+      <h1>Retail Multi-Segment Profiler</h1>
+      <p class="subtitle">Explore customer behavior and identify high-value customers.</p>
+    </div>
+    <button id="demoBtn" class="primary">Load Demo Data</button>
+  </header>
+
+  <main>
+    <section class="panel upload-panel">
+      <div>
+        <h2>Load transaction data</h2>
+        <p>Upload a CSV with columns: CustomerID, Invoice, Quantity, Price, InvoiceDate, StockCode.</p>
+      </div>
+      <label class="file-label">
+        Choose CSV file
+        <input id="fileInput" type="file" accept=".csv">
+      </label>
+      <p id="fileStatus" class="status">No file selected. Demo data is available.</p>
+    </section>
+
+    <section class="metrics" id="summary">
+      <article class="metric"><span>Total customers</span><strong id="totalCustomers">—</strong></article>
+      <article class="metric"><span>Total revenue</span><strong id="totalRevenue">—</strong></article>
+      <article class="metric"><span>High-value customers</span><strong id="highValueCount">—</strong></article>
+      <article class="metric"><span>Average order value</span><strong id="avgOrderValue">—</strong></article>
+    </section>
+
+    <section class="two-column">
+      <article class="panel">
+        <div class="panel-heading">
+          <div><h2>Customer personas</h2><p>Distribution of customers by segment</p></div>
+        </div>
+        <div id="personaChart" class="bar-chart"></div>
+      </article>
+      <article class="panel">
+        <div class="panel-heading">
+          <div><h2>How scoring works</h2><p>A simple browser-based learning prototype</p></div>
+        </div>
+        <ul class="explain">
+          <li><b>Recency:</b> fewer days since purchase is better.</li>
+          <li><b>Frequency:</b> more orders is better.</li>
+          <li><b>Monetary:</b> higher total spend is better.</li>
+          <li><b>Personas:</b> assigned using customer behavior rules.</li>
+        </ul>
+        <div class="notice">This basic version uses transparent rules and a simple score. It is not the trained Gradient Boosting model described in the report.</div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading worklist-heading">
+        <div><h2>Customer worklist</h2><p>Search and filter the ranked customer list.</p></div>
+        <div class="filters">
+          <input id="searchInput" type="search" placeholder="Search customer ID">
+          <select id="personaFilter">
+            <option value="all">All personas</option>
+          </select>
+          <select id="minScore">
+            <option value="0">Any score</option>
+            <option value="50">50% and above</option>
+            <option value="70">70% and above</option>
+            <option value="85">85% and above</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Customer ID</th><th>Persona</th><th>Orders</th><th>Total spend</th><th>Recency (days)</th><th>High-value score</th></tr></thead>
+          <tbody id="customerTable"><tr><td colspan="6" class="empty">Load demo data or upload a CSV to begin.</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+    <footer>Basic HTML, CSS and JavaScript project • Data is processed locally in your browser.</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
